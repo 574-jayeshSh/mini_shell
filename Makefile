@@ -1,9 +1,9 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
 
-SRC = src/main.c src/shell.c
+SRC = $(wildcard src/*.c)
 
-OBJ = obj/main.o obj/shell.o
+OBJ = $(SRC:src/%.c=obj/%.o)
 
 TARGET = bin/lsh
 
@@ -13,13 +13,9 @@ $(TARGET): $(OBJ)
 	mkdir -p bin
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
 
-obj/main.o: src/main.c
+obj/%.o: src/%.c
 	mkdir -p obj
-	$(CC) $(CFLAGS) -c src/main.c -o obj/main.o
-
-obj/shell.o: src/shell.c
-	mkdir -p obj
-	$(CC) $(CFLAGS) -c src/shell.c -o obj/shell.o
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f obj/*.o $(TARGET)
+	rm -rf obj bin

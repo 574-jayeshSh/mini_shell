@@ -1,0 +1,22 @@
+# Object files
+*.o
+
+# Executables
+bin/lsh
+
+# Build directories
+bin/
+obj/
+
+# Temporary files
+*.out
+*.tmp
+
+# Linux
+*~
+
+# VS Code
+.vscode/
+
+# Debug files
+*.gdb
